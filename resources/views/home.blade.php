@@ -1,10 +1,6 @@
 @extends('layouts.main')
 
-@section('page-title', 'Homepage')
-
-{{-- @section('page-title')
-Homepage
-@endsection --}}
+@section('page-title', 'FumettoLAND')
 
 @section('main-content')
 

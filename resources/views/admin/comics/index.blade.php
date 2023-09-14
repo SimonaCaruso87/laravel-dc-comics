@@ -1,13 +1,13 @@
 @extends('layouts.main')
 
-@section('page-title', 'Index di Pasta')
+@section('page-title', 'FumettoLAND')
 
 @section('main-content')
 <div class="container">
     <div class="row">
         <div class="col">
             <h1>
-                Index di Pasta
+                FumettOLAND
             </h1>
         </div>
     </div>
@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-12 mb-4">
             <a href="{{ route('comics.create') }}" class="btn btn-success w-100">
-                + Aggiungi
+                + Aggiungi il tuo fumetto e vinci un viaggio firmato Boolean
             </a>
         </div>
         <div class="col-12">
@@ -28,8 +28,6 @@
                         <th scope="col">Serie</th>
                         <th scope="col">Prezzo</th>
                         <th scope="col">Data Di Uscita</th>
-                        <th scope="col">Artisti</th>
-                        <th scope="col">Scrittori</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +39,7 @@
                             <td>{{ $comic->series }}</td>
                             <td>
                                 <a href="{{ route('comics.show', ['comic' => $comic->id]) }}" class="btn btn-primary">
-                                    Vedi
+                                    Scopri di Più
                                 </a>
                             </td>
                         </tr>
