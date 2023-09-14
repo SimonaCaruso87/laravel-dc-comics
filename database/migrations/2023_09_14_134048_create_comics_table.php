@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('comics', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('description');
+            $table->string('title' , 64);
+            $table->text('description');
             $table->string('thumb');
             $table->float('price', 8, 2);
             $table->string('series');
