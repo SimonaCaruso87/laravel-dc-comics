@@ -39,7 +39,10 @@
                             <td>{{ $comic->series }}</td>
                             <td>
                                 <a href="{{ route('comics.show', ['comic' => $comic->id]) }}" class="btn btn-primary">
-                                    Scopri di Più
+                                    Vedi
+                                </a>
+                                <a href="{{ route('comics.edit', ['comic' => $comic->id]) }}" class="btn btn-warning">
+                                    Modifica
                                 </a>
                             </td>
                         </tr>
