@@ -61,7 +61,15 @@ class ComicController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $comic = Comic::findOrFail($id);
+        $formData = $request->all();
+
+        $comic->thumb = $formData['thumb'] ;
+        $comic->title = $formData['title'] ;
+        $comic->type = $formData['type'] ;
+        $comic->artists = implode(',' , $formData['artists']);
+        $comic->writers = implode(',' , $formData['writers']);
+        $comic->description = $formData['description'] ;
     }
 
     /**
