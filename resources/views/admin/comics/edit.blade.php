@@ -22,41 +22,51 @@
                 <div class="mb-3">
                     <label for="thumb" class="form-label">Thumb</label>
                     <input type="text" maxlength="1024" class="form-control" id="thumb" name="thumb" placeholder="Enter value..."
-                    value="{{ $comic->thumb }}">
+                    value="{{ old('thumb' , $comic->thumb) }}">
                 </div>
 
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" maxlength="128" class="form-control" id="title" name="title" placeholder="Enter value..." required
-                    value="{{ $comic->title }}">
+                    <input type="text" maxlength="128" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Enter value..." required
+                    value="{{ old('title' , $comic->title) }}">
+                    @error('title')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="mb-3">
                     <label for="type" class="form-label">Type</label>
-                    <input type="text" maxlength="16" class="form-control" id="type" name="type" placeholder="Enter value..." required
-                    value="{{ $comic->type }}">
+                    <input type="text" maxlength="16" class="form-control @error('type') is-invalid @enderror" id="type" name="type" placeholder="Enter value..." required
+                    value="{{ old('type', $comic->type) }}">
+                    @error('type')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="mb-3">
                     <label for="artists" class="form-label">Artisti</label>
                     <input type="text" class="form-control" id="artists" name="artists" placeholder="Enter value..."
-                    value="{{ $comic->artists }}">
+                    value="{{ old('artists' , $comic->artists) }}">
                 </div>
 
                 <div class="mb-3">
                     <label for="writers" class="form-label">Scrittori</label>
                     <input type="text" class="form-control" id="writers" name="writers" placeholder="Enter value..." required
-                    value="{{ $comic->writers }}">
+                    value="{{ old('writers' , $comic->writers) }}">
                 </div>
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                    <textarea class="form-control" id="description" name="description" rows="3" required>{{ old('description' , $comic->description) }}</textarea>
                 </div>
 
                 <div>
                     <button type="submit" class="btn btn-success w-100">
-                        + Aggiungi
+                        Update
                     </button>
                 </div>
             </form>
