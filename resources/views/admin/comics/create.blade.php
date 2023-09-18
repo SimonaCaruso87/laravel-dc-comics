@@ -14,6 +14,18 @@
 
     <div class="row">
         <div class="col bg-primary py-4">
+
+            {{-- validazione lato front-end --}}
+            @if($errors->any())
+                <div class="alert alert-danger mb-4">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif       
+
             <form action="{{ route('comics.store') }}" method="POST">
                 @csrf
 
@@ -24,12 +36,46 @@
 
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" maxlength="128" class="form-control" id="title" name="title" placeholder="Enter value..." required>
+                    <input type="text" maxlength="128" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Write here..." required
+                    value="{{ old('title') }}">
+                    @error('title')
+                        <div class="alert alert-danger my-2">
+                            {{ $message }}
+                        </div>
+                    @enderror    
                 </div>
 
                 <div class="mb-3">
                     <label for="type" class="form-label">Type</label>
-                    <input type="text" maxlength="16" class="form-control" id="type" name="type" placeholder="Enter value..." required>
+                    <input type="text" maxlength="16" class="form-control @error('type') is-invalid @enderror" id="type" name="type" placeholder="Write here..." required
+                    value="{{ old('type') }}">
+                    @error('type')
+                        <div class="alert aler-danger my-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="number" class="form-label">Price</label>
+                    <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" placeholder="Write here..." required
+                    value="{{ old('price') }}">
+                    @error('price')
+                        <div class="alert aler-danger my-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="text" class="form-label">Series</label>
+                    <input type="text" class="form-control @error('series') is-invalid @enderror" id="series" name="series" placeholder="Write here..." required
+                    value="{{ old('series') }}">
+                    @error('series')
+                        <div class="alert aler-danger my-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="mb-3">

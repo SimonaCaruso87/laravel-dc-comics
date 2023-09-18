@@ -31,11 +31,37 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $formData = $request->all();
+        $request->validate([
+            'title' => 'required|max:70',
+            'description' => 'required',
+            'thumb' => 'nullable|max:2048',
+            'price' => 'required|numeric|min:2|max:100',
+            'series' => 'required|max:64',
+            'sale_date' => 'nullable|date',
+        ], [
+            'title.required' => 'Il titolo è obbligatorio',
+            'title.max' => 'Il titolo non può essere più lungo di 70 caratteri',
+        ]);
 
-        $comic = Comic::create($formData);  // Mass assignment
+        // se vogliamo prendere le info una alla volta 
+        // dalla request possiamo usare input , che è una funzione che si
+        //si aspetta che gli passiamo una stringa con il name che ci interessa
+        $comic = new Comic();
+        $comic->title = $request->input('title');
+        $comic->description = $request->input('description');
+        $comic->thumb = $request->input('thumb');
+        $comic->price = $request->input('price');
+        $comic->series = $request->input('series');
+        $comic->sale_date = $request->input('sale_date');
+        $comic->type = $request->input('type');
+        $comic->artists = $request->input('artists');
+        $comic->writers = $request->input('writers');
+        $comic->save();
 
-        return redirect()->route('pastas.show', ['pasta' => $pasta->id]);
+        // lo show vuole un parametro e per prendere 
+        // l'id serve la variabile comic freccia id perchè 
+        // è un oggetto di tipo Comic
+        return redirect()->route('comics.show', ['comic' => $comic->id]);
 
 
     }
@@ -65,17 +91,33 @@ class ComicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Comic $comic)
     {
-        $comic = Comic::findOrFail($id);
-        $formData = $request->all();
+        $request->validate([
+            'title' => 'required|max:70',
+            'description' => 'required',
+            'thumb' => 'nullable|max:2048',
+            'price' => 'required|numeric|min:2|max:100',
+            'series' => 'required|max:64',
+            'sale_date' => 'nullable|date',
+        ], [
+            'title.required' => 'Il titolo è obbligatorio',
+            'title.max' => 'Il titolo non può essere più lungo di 70 caratteri',
+        ]);
 
-        $comic->thumb = $formData['thumb'] ;
-        $comic->title = $formData['title'] ;
-        $comic->type = $formData['type'] ;
-        $comic->artists = implode(',' , $formData['artists']);
-        $comic->writers = implode(',' , $formData['writers']);
-        $comic->description = $formData['description'] ;
+        $comic = new Comic();
+        $comic->title = $request->input('title');
+        $comic->description = $request->input('description');
+        $comic->thumb = $request->input('thumb');
+        $comic->price = $request->input('price');
+        $comic->series = $request->input('series');
+        $comic->sale_date = $request->input('sale_date');
+        $comic->type = $request->input('type');
+        $comic->artists = $request->input('artists');
+        $comic->writers = $request->input('writers');
+        $comic->save();
+
+        return redirect()->route('comics.show', ['comic' => $comic->id]);
     }
 
     /**

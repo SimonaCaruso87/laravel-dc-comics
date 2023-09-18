@@ -15,7 +15,7 @@
 
     <div class="row">
         <div class="col bg-warning py-4">
-            <form action="{{ route('comics.update' , ['pasta' =>id ]) }}" method="POST">
+            <form action="{{ route('comics.update' , ['comic' =>$comic->id ]) }}" method="POST">
                 @csrf
                 @method('PUT')
 
