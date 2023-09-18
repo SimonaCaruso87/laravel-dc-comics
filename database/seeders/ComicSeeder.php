@@ -16,9 +16,13 @@ class ComicSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
+    
     {
-        $comics = config('comic');
+
         Comic::truncate();
+
+        //mi prendo il contenuto di comics da config.
+        $comics = config('comic');
         
         foreach ( $comics as $comicElement ) {  
             $comic = new Comic();

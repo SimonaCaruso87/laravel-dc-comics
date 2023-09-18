@@ -31,7 +31,13 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formData = $request->all();
+
+        $comic = Comic::create($formData);  // Mass assignment
+
+        return redirect()->route('pastas.show', ['pasta' => $pasta->id]);
+
+
     }
 
     /**
@@ -77,6 +83,10 @@ class ComicController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $comic = Comic::findOrFail($id);
+
+        $comic->delete();
+
+        return redirect()->route('comics.index');
     }
 }

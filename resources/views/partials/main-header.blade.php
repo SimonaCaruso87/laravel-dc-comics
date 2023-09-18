@@ -10,9 +10,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('comics.index') }}">Crea il tuo Fumetto</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Show Comics</a>
-                </li>
             </ul>
             </div>
         </div>
